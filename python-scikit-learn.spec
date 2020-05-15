@@ -7,9 +7,9 @@
 # - test failures (a few with python2, cannot run with python3)
 #
 # Conditional build:
-%bcond_with	tests	# unit tests
+%bcond_with	tests	# unit tests (some failing)
 %bcond_without	python2 # CPython 2.x module
-%bcond_without	python3 # CPython 3.x module
+%bcond_with	python3 # CPython 3.x module (built from python3-scikit-learn.spec)
 
 %define	numpy_ver	1.8.2
 %define	scipy_ver	0.13.3
@@ -101,13 +101,12 @@ cd ../..
 %py3_build
 
 %if %{with tests}
+# symlinking doesn't work with python 3
+cp -pr sklearn/datasets/{data,descr,images} build-3/lib.*/sklearn/datasets
+cp -pr sklearn/datasets/tests/data build-3/lib.*/sklearn/datasets/tests
 cd build-3/lib.*
-ln -snf ../../../../sklearn/datasets/data sklearn/datasets/data
-ln -snf ../../../../sklearn/datasets/descr sklearn/datasets/descr
-ln -snf ../../../../sklearn/datasets/images sklearn/datasets/images
-ln -snf ../../../../../sklearn/datasets/tests/data sklearn/datasets/tests/data
 %{__python3} -m pytest
-%{__rm} sklearn/datasets/{data,descr,images} sklearn/datasets/tests/data
+%{__rm} -r sklearn/datasets/{data,descr,images} sklearn/datasets/tests/data
 cd ../..
 %endif
 %endif

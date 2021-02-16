@@ -19,7 +19,7 @@ Summary(pl.UTF-8):	Zbiór modułów Pythona 2 do uczenia maszynowego i eksporacj
 Name:		python-scikit-learn
 # NOTE: keep 0.20.x here, 0.21+ don't support python2
 Version:	0.20.4
-Release:	1
+Release:	2
 License:	BSD
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/scikit-learn/
@@ -137,8 +137,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc COPYING README.rst
 %dir %{py_sitedir}/sklearn
-%attr(755,root,root%) %{py_sitedir}/sklearn/_isotonic.so
-%attr(755,root,root%) %{py_sitedir}/sklearn/*.py[co]
+%attr(755,root,root) %{py_sitedir}/sklearn/_isotonic.so
+%attr(755,root,root) %{py_sitedir}/sklearn/*.py[co]
 %dir %{py_sitedir}/sklearn/__check_build
 %attr(755,root,root) %{py_sitedir}/sklearn/__check_build/_check_build.so
 %{py_sitedir}/sklearn/__check_build/*.py[co]
@@ -238,9 +238,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc COPYING README.rst
 %dir %{py3_sitedir}/sklearn
-%attr(755,root,root%) %{py3_sitedir}/sklearn/_isotonic.cpython-*.so
-%attr(755,root,root%) %{py3_sitedir}/sklearn/*.py
-%attr(755,root,root%) %{py3_sitedir}/sklearn/__pycache__
+%attr(755,root,root) %{py3_sitedir}/sklearn/_isotonic.cpython-*.so
+%attr(755,root,root) %{py3_sitedir}/sklearn/*.py
+%attr(755,root,root) %{py3_sitedir}/sklearn/__pycache__
 %dir %{py3_sitedir}/sklearn/__check_build
 %attr(755,root,root) %{py3_sitedir}/sklearn/__check_build/_check_build.cpython-*.so
 %{py3_sitedir}/sklearn/__check_build/*.py
